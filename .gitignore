@@ -1,0 +1,76 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.pipenv/
+*.egg-info/
+.eggs/
+
+# Distribution/build directories
+build/
+dist/
+*.egg
+*.whl
+
+# C extensions
+*.so
+
+# Package manager files
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+*.rej
+*.gz
+
+# IDE/Editor-specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# Coverage reports
+.coverage
+coverage.xml
+.cache/
+nosetests.xml
+*.cover
+htmlcov/
+.tox/
+
+# Test artifacts
+.pytest_cache/
+.testmondata
+tests/.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# User-specific files
+*.iml
+*.ipr
+*.iws
+*.rdb
