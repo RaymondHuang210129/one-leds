@@ -5,6 +5,14 @@
         "led_dma_channel": 10,
         "invert_signal": false,
         "pwm_channel": 0,
-        "led_count": 150
+        "led_count": 34,
+        "color_correction": {
+            "red_gamma": 1.8,
+            "red_max": 255,
+            "green_gamma": 1.8,
+            "green_max": 192,
+            "blue_gamma": 1.8,
+            "blue_max": 148
+        }
     }
 ]
