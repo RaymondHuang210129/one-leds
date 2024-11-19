@@ -1,6 +1,6 @@
-from leds_server.submodule.control_instance import ControlInstance
-from leds_server.submodule.app import App
-from leds_server.submodule.color import Color
+from leds_server.common.control_instance import ControlInstance
+from leds_server.common.app import App
+from leds_server.common.color import Color
 import time
 from typing import List
 
