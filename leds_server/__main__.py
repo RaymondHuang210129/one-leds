@@ -1,14 +1,24 @@
 import argparse
-from leds_server.common.config import parse_config, ControlInstanceConfig
+from leds_server.common.config import *
 from leds_server.common.control_instance import ControlInstance
 from leds_server.apps.example_app.example_app import ExampleApp
 from leds_server.apps.color_server.color_server import ColorServer
-from typing import List
+from leds_server.control_instances.control_instance_direct import ControlInstanceDirect
+from leds_server.control_instances.control_instance_remote import ControlInstanceRemote
+from typing import List, Union
 import json
 import os
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_CONFIG_PATH = os.path.join(PROJECT_ROOT, "config", "default.json")
+
+
+def create_control_instance(config: ControlInstanceConfig) -> Union[ControlInstanceDirect,
+                                                                    ControlInstanceRemote]:
+    if isinstance(config.implementation, Direct):
+        return ControlInstanceDirect(config)
+    elif isinstance(config.implementation, Remote):
+        return ControlInstanceRemote(config)
 
 
 def main():
@@ -22,9 +32,11 @@ def main():
     print("path: ", args.config)
 
     with open(args.config, 'r') as file:
-        configs: List[ControlInstanceConfig] = parse_config(json.load(file))
+        configs: List[ControlInstanceConfig] = parse_config(
+            json.load(file))
 
-    instances = [ControlInstance(config) for config in configs]
+    instances = [create_control_instance(
+        config) for config in configs]
     for instance in instances:
         instance.initialize()
 

@@ -32,6 +32,7 @@ class ExampleApp(App):
     def _color_wipe(self, color: Color) -> None:
         for index in range(self._instances[0].led_count):
             self._instances[0].set_color(index, color)
+            self._instances[0].show()
             self._sleep()
 
     def _theater_chase(self, color: Color) -> None:
@@ -43,6 +44,7 @@ class ExampleApp(App):
                         continue
                     colors[length+index] = color
                 self._instances[0].set_colors(colors)
+                self._instances[0].show()
                 for index in range(0, self._instances[0].led_count, 3):
                     if length + index >= self._instances[0].led_count:
                         continue
@@ -64,6 +66,7 @@ class ExampleApp(App):
             for index in range(self._instances[0].led_count):
                 colors[index] = self._wheel((iteration+index) & 255)
             self._instances[0].set_colors(colors)
+            self._instances[0].show()
             self._sleep()
 
     def _rainbow_cycle(self) -> None:
@@ -73,6 +76,7 @@ class ExampleApp(App):
                 colors[index] = self._wheel(
                     (int(index * 256 / self._instances[0].led_count) + interation) & 255)
             self._instances[0].set_colors(colors)
+            self._instances[0].show()
             self._sleep()
 
     def _theater_chase_rainbow(self) -> None:
@@ -84,6 +88,7 @@ class ExampleApp(App):
                         continue
                     colors[index+length] = self._wheel((iteration+index) % 255)
                 self._instances[0].set_colors(colors)
+                self._instances[0].show()
                 self._sleep()
                 for index in range(0, self._instances[0].led_count, 3):
                     if length + index >= self._instances[0].led_count:
@@ -93,4 +98,5 @@ class ExampleApp(App):
     def _fix_color(self, color: Color):
         colors = [color for _ in range(self._instances[0].led_count)]
         self._instances[0].set_colors(colors)
+        self._instances[0].show()
         self._sleep()

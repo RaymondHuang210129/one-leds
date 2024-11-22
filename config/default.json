@@ -1,11 +1,13 @@
 [
     {
-        "led_pin": 18,
-        "led_signal_freq_hz": 800000,
-        "led_dma_channel": 10,
-        "invert_signal": false,
-        "pwm_channel": 0,
         "led_count": 34,
+        "implementation": {
+            "led_pin": 18,
+            "led_signal_freq_hz": 800000,
+            "led_dma_channel": 10,
+            "invert_signal": false,
+            "pwm_channel": 0
+        },
         "color_correction": {
             "red_gamma": 1.8,
             "red_max": 255,
