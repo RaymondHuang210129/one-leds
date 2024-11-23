@@ -9,11 +9,11 @@
             "pwm_channel": 0
         },
         "color_correction": {
-            "red_gamma": 1.8,
+            "red_gamma": 1.5,
             "red_max": 255,
-            "green_gamma": 1.8,
+            "green_gamma": 1.5,
             "green_max": 192,
-            "blue_gamma": 1.8,
+            "blue_gamma": 1.5,
             "blue_max": 148
         }
     }
