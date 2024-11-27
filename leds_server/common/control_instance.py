@@ -1,4 +1,3 @@
-from rpi_ws281x import *
 from .config import ControlInstanceConfig, GammaCorrection
 from .color import Color
 from typing import List, Union

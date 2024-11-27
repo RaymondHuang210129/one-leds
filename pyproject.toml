@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-rpi-ws281x = "^5.0.0"
+rpi-ws281x = { version = "^5.0.0", markers = "platform_system == 'Linux' and platform_machine == 'armv7l'" }
 adafruit-circuitpython-neopixel = "^6.3.12"
 adafruit-blinka = "^8.50.0"
 pylint = "^3.3.1"
