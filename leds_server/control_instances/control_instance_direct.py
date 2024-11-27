@@ -3,7 +3,7 @@ from leds_server.common.config import ControlInstanceConfig
 
 # Conditional import
 import platform
-if platform.system() == "Linux" and "arm" in platform.machine():
+if platform.system() == "Linux" and "aarch64" in platform.machine():
     from rpi_ws281x import *
 
 
@@ -18,7 +18,8 @@ class ControlInstanceDirect(ControlInstance):
 
     def initialize(self) -> None:
         if platform.system() in ["Darwin", "Windows"]:
-            raise NotImplementedError("Direct control can't be used in Mac and Windows")
+            raise NotImplementedError(
+                "Direct control can't be used in Mac and Windows")
         self._instance: Adafruit_NeoPixel = Adafruit_NeoPixel(self.led_count,
                                                               self._led_pin,
                                                               self._led_signal_freq_hz,
