@@ -1,6 +1,7 @@
 from leds_server.common.control_instance import ControlInstance
 from leds_server.common.config import ControlInstanceConfig
 import socket
+import time
 
 
 class ControlInstanceRemote(ControlInstance):
@@ -11,11 +12,13 @@ class ControlInstanceRemote(ControlInstance):
 
     def initialize(self) -> None:
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 102)
+        return
 
     def show(self) -> None:
         payload: bytearray = bytearray()
         for color in self._colors:
             payload.append(self._red_lut[color.red])
-            payload.append(self._green_lut[color.red])
+            payload.append(self._green_lut[color.green])
             payload.append(self._blue_lut[color.blue])
         self._socket.sendto(payload, (self._ip, self._port))
