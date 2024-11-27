@@ -12,7 +12,6 @@ class ControlInstanceRemote(ControlInstance):
 
     def initialize(self) -> None:
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 102)
         return
 
     def show(self) -> None:
