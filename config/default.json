@@ -1,20 +1,41 @@
-[
-    {
-        "led_count": 34,
-        "implementation": {
-            "led_pin": 18,
-            "led_signal_freq_hz": 800000,
-            "led_dma_channel": 10,
-            "invert_signal": false,
-            "pwm_channel": 0
+{
+    "light_strips": [
+        {
+            "led_count": 34,
+            "implementation": {
+                "ip": "192.168.3.108",
+                "port": 5005
+            },
+            "color_correction": {
+                "red_gamma": 1.5,
+                "red_max": 255,
+                "green_gamma": 1.5,
+                "green_max": 192,
+                "blue_gamma": 1.5,
+                "blue_max": 148
+            }
+        }
+    ],
+    "app_configs": {
+        "example_app": {
+            "sleep_ms": 40,
+            "fixed_color": false,
+            "color_wipe": false,
+            "theater_chase": false,
+            "rainbow": false,
+            "rainbow_cycle": false,
+            "theater_chase_rainbow": true
         },
-        "color_correction": {
-            "red_gamma": 1.5,
-            "red_max": 255,
-            "green_gamma": 1.5,
-            "green_max": 192,
-            "blue_gamma": 1.5,
-            "blue_max": 148
+        "color_server": {
+            "listen_port": 5005
+        },
+        "music_dance": {
+            "chunk_size": 8192,
+            "compute_max_frequency": 1536,
+            "decay_rate": 16,
+            "attack_threshold": 90,
+            "kick_max_frequency": 50,
+            "color_change_cool_down_period": 5
         }
     }
-]
+}

@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Union
+from typing import List, Union, Tuple
 import json
 
 
@@ -12,7 +12,7 @@ class GammaCorrection(BaseModel):
     blue_max: int
 
 
-class Direct(BaseModel):
+class DirectAccess(BaseModel):
     led_pin: int
     led_signal_freq_hz: int
     led_dma_channel: int
@@ -20,7 +20,7 @@ class Direct(BaseModel):
     pwm_channel: int
 
 
-class Remote(BaseModel):
+class RemoteAccess(BaseModel):
     ip: str
     port: int
 
@@ -28,9 +28,45 @@ class Remote(BaseModel):
 class ControlInstanceConfig(BaseModel):
     led_count: int
     color_correction: GammaCorrection
-    implementation: Union[Direct, Remote] = Field(union_mode='left_to_right')
+    implementation: Union[DirectAccess, RemoteAccess] = Field(
+        union_mode='left_to_right')
 
 
-def parse_config(input: json) -> List[ControlInstanceConfig]:
-    instances = [ControlInstanceConfig(**item) for item in input]
-    return instances
+class ExampleAppConfig(BaseModel):
+    sleep_ms: int
+    fixed_color: bool
+    color_wipe: bool
+    theater_chase: bool
+    rainbow: bool
+    rainbow_cycle: bool
+    theater_chase_rainbow: bool
+
+
+class ColorServerConfig(BaseModel):
+    listen_port: int
+
+
+class MusicDanceConfig(BaseModel):
+    chunk_size: int
+    compute_max_frequency: int
+    decay_rate: int
+    attack_threshold: int
+    kick_max_frequency: int
+    color_change_cool_down_period: int
+
+
+class AppConfig(BaseModel):
+    example_app: ExampleAppConfig
+    color_server: ColorServerConfig
+    music_dance: MusicDanceConfig
+
+
+class Config(BaseModel):
+    light_strips: List[ControlInstanceConfig]
+    app_configs: AppConfig
+
+
+def parse_config(input: json) -> Tuple[List[ControlInstanceConfig], AppConfig]:
+    config: Config = Config.model_validate(input)
+    instances = [light_strip for light_strip in config.light_strips]
+    return instances, config.app_configs

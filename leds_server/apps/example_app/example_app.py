@@ -1,33 +1,40 @@
 from leds_server.common.control_instance import ControlInstance
 from leds_server.common.app import App
 from leds_server.common.color import Color
+from leds_server.common.config import AppConfig, ExampleAppConfig
 import time
 from typing import List
 
 
 class ExampleApp(App):
-    def __init__(self, instances: List[ControlInstance]):
+    def __init__(self, instances: List[ControlInstance], app_config: AppConfig):
         App.__init__(self, instances)
-        self._sleep_ms = 50
+        self._config: ExampleAppConfig = app_config.example_app
 
     def get_info(self) -> str:
         return "Example App"
 
     def begin(self) -> None:
         while True:
-            # self._fix_color(Color(255, 0, 128))
-            # self._color_wipe(Color(255, 0, 0))
-            # self._color_wipe(Color(0, 255, 0))
-            # self._color_wipe(Color(0, 0, 255))
-            # self._theater_chase(Color(127, 0, 0))
-            # self._theater_chase(Color(0, 127, 0))
-            # self._theater_chase(Color(0, 0, 127))
-            # self._rainbow()
-            self._rainbow_cycle()
-            # self._theater_chase_rainbow()
+            if self._config.fixed_color:
+                self._fix_color(Color(255, 0, 128))
+            if self._config.color_wipe:
+                self._color_wipe(Color(255, 0, 0))
+                self._color_wipe(Color(0, 255, 0))
+                self._color_wipe(Color(0, 0, 255))
+            if self._config.theater_chase:
+                self._theater_chase(Color(127, 0, 0))
+                self._theater_chase(Color(0, 127, 0))
+                self._theater_chase(Color(0, 0, 127))
+            if self._config.rainbow:
+                self._rainbow()
+            if self._config.rainbow_cycle:
+                self._rainbow_cycle()
+            if self._config.theater_chase_rainbow:
+                self._theater_chase_rainbow()
 
     def _sleep(self) -> None:
-        time.sleep(self._sleep_ms/1000.0)
+        time.sleep(self._config.sleep_ms / 1000.0)
 
     def _color_wipe(self, color: Color) -> None:
         for index in range(self._instances[0].led_count):

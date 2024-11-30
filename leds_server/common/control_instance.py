@@ -1,7 +1,7 @@
 from .config import ControlInstanceConfig, GammaCorrection
 from .color import Color
 from typing import List, Union
-from .config import Direct, Remote
+from .config import DirectAccess, RemoteAccess
 
 
 class ControlInstance:

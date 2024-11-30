@@ -3,6 +3,7 @@ from leds_server.common.config import *
 from leds_server.common.control_instance import ControlInstance
 from leds_server.apps.example_app.example_app import ExampleApp
 from leds_server.apps.color_server.color_server import ColorServer
+from leds_server.apps.music_dance.music_dance import MusicDance
 from leds_server.control_instances.control_instance_direct import ControlInstanceDirect
 from leds_server.control_instances.control_instance_remote import ControlInstanceRemote
 from typing import List, Union
@@ -15,9 +16,9 @@ DEFAULT_CONFIG_PATH = os.path.join(PROJECT_ROOT, "config", "default.json")
 
 def create_control_instance(config: ControlInstanceConfig) -> Union[ControlInstanceDirect,
                                                                     ControlInstanceRemote]:
-    if isinstance(config.implementation, Direct):
+    if isinstance(config.implementation, DirectAccess):
         return ControlInstanceDirect(config)
-    elif isinstance(config.implementation, Remote):
+    elif isinstance(config.implementation, RemoteAccess):
         return ControlInstanceRemote(config)
 
 
@@ -32,16 +33,16 @@ def main():
     print("path: ", args.config)
 
     with open(args.config, 'r') as file:
-        configs: List[ControlInstanceConfig] = parse_config(
+        instances_config, app_config = parse_config(
             json.load(file))
 
     instances = [create_control_instance(
-        config) for config in configs]
+        instance_config) for instance_config in instances_config]
     for instance in instances:
         instance.initialize()
 
     if args.app in globals() and isinstance(globals()[args.app], type):
-        app = globals()[args.app](instances)
+        app = globals()[args.app](instances, app_config)
         print("Launching app: ", app.get_info())
         try:
             app.begin()
