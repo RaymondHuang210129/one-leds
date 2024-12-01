@@ -48,10 +48,7 @@ class MusicDance(App):
     def _audio_callback(self, indata: np.ndarray, frames: int, timestamp, status) -> None:
         frequencies, magnitudes = self._to_frequency_domain(indata[:, 0])
 
-        color_change = False
-
-        upper_index: int = int(
-            self._config.chunk_size * (self._config.compute_max_frequency / self._sample_rate))
+        kick_detected = False
 
         for freq_index in range(self._max_frequency_index):
             new_brightness: int = int(min(255, magnitudes[freq_index]))
@@ -60,22 +57,22 @@ class MusicDance(App):
             self._peak_brightness_hold[freq_index] = max(
                 self._peak_brightness_hold[freq_index] - self._config.decay_rate, 0)
 
-            # Detect if kick happens
+            # Detect kick
             if (frequencies[freq_index] < self._config.kick_max_frequency and
-                new_brightness - self._peak_brightness_hold[freq_index] > self._config.attack_threshold and
-                self._color_change_cool_down_timer == 0
-                    and color_change == False):
-                color_change = True
-                self._color_change_cool_down_timer = self._config.color_change_cool_down_period
-                # Change color
-                self._current_color_id = (self._current_color_id + 1) % 6
-            else:
-                self._color_change_cool_down_timer = max(
-                    self._color_change_cool_down_timer - 1, 0)
+                    new_brightness - self._peak_brightness_hold[freq_index] > self._config.attack_threshold):
+                kick_detected = True
 
             # Push up the peak hold if the brightness increases
             if new_brightness > self._peak_brightness_hold[freq_index]:
                 self._peak_brightness_hold[freq_index] = new_brightness
+
+        # Change color if kick detected and has cool down timer decrement to 0
+        if kick_detected and self._color_change_cool_down_timer == 0:
+            self._color_change_cool_down_timer = self._config.color_change_cool_down_period
+            self._current_color_id = (self._current_color_id + 1) % 6
+        else:
+            self._color_change_cool_down_timer = max(
+                self._color_change_cool_down_timer - 1, 0)
 
         for led_index in range(0, self._instances[0].led_count):
             mapped_freq_index: int = int(

@@ -1,7 +1,7 @@
 {
     "light_strips": [
         {
-            "led_count": 34,
+            "led_count": 36,
             "implementation": {
                 "ip": "192.168.3.108",
                 "port": 5005
@@ -23,8 +23,8 @@
             "color_wipe": false,
             "theater_chase": false,
             "rainbow": false,
-            "rainbow_cycle": false,
-            "theater_chase_rainbow": true
+            "rainbow_cycle": true,
+            "theater_chase_rainbow": false
         },
         "color_server": {
             "listen_port": 5005
@@ -35,7 +35,7 @@
             "decay_rate": 16,
             "attack_threshold": 90,
             "kick_max_frequency": 50,
-            "color_change_cool_down_period": 5
+            "color_change_cool_down_period": 10
         }
     }
 }
