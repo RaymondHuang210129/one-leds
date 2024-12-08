@@ -9,7 +9,9 @@ A cross-platform application for controlling LED light strips with versatile con
 3. [Installation](#installation)  
    - [Hardware Configurations](#hardware-configurations)  
    - [App Configurations](#app-configurations)
-4. [Usage](#usage)  
+4. [Usage](#usage)
+   - [ExampleApp](#exampleapp)
+   - [MusicDance](#musicdance)
 5. [Contributing](#contributing)  
 6. [License](#license)  
 
@@ -136,12 +138,12 @@ For each application specifically:
 Basic usage:
 ```sh
 poetry shell
-python -m led_server --config config.json --app ExampleApp
+python -m leds_server --config config.json --app ExampleApp
 ```
 
 If `--config` not specified, it runs with default configuration specified in `config/default.json`.
 
-All apps defined in `led_server/apps` should be imported in `__main__.py` for users to specify the app to execute. This is done by reflection.
+All apps defined in `leds_server/apps` should be imported in `__main__.py` for users to specify the app to execute. This is done by reflection.
 
 ### ExampleApp
 

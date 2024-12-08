@@ -22,6 +22,7 @@ def get_loopback_device_index() -> Tuple[int, float]:
                 return (device['index'], device['default_samplerate'])
         raise NotImplementedError
 
+
 colors = [
     (1, 0, 0),
     (0.5, 0.5, 0),
@@ -80,19 +81,19 @@ class MusicDance(App):
             self._color_change_cool_down_timer = max(
                 self._color_change_cool_down_timer - 1, 0)
 
-        for led_index in range(0, self._instances[0].led_count):
-            mapped_freq_index: int = int(
-                self._max_frequency_index * (led_index / self._instances[0].led_count))
-            self._instances[0].set_color(led_index, Color(
-                int(self._peak_brightness_hold[mapped_freq_index]
-                    * colors[self._current_color_id][0]),
-                int(self._peak_brightness_hold[mapped_freq_index]
-                    * colors[self._current_color_id][1]),
-                int(self._peak_brightness_hold[mapped_freq_index]
-                    * colors[self._current_color_id][2]),
-            ))
-
-        self._instances[0].show()
+        for instance in self._instances:
+            for led_index in range(0, instance.led_count):
+                mapped_freq_index: int = int(
+                    self._max_frequency_index * (led_index / instance.led_count))
+                instance.set_color(led_index, Color(
+                    int(self._peak_brightness_hold[mapped_freq_index]
+                        * colors[self._current_color_id][0]),
+                    int(self._peak_brightness_hold[mapped_freq_index]
+                        * colors[self._current_color_id][1]),
+                    int(self._peak_brightness_hold[mapped_freq_index]
+                        * colors[self._current_color_id][2]),
+                ))
+            instance.show()
 
     def begin(self) -> None:
         self._max_frequency_index = int(
