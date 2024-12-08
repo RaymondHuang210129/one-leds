@@ -8,8 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 rpi-ws281x = { version = "^5.0.0", markers = "platform_system == 'Linux' and platform_machine == 'armv7l'" }
-adafruit-circuitpython-neopixel = "^6.3.12"
-adafruit-blinka = "^8.50.0"
+adafruit-circuitpython-neopixel = { version = "^6.3.12", markers = "platform_system != 'Windows'" }
+adafruit-blinka = { version = "^8.50.0", markers = "platform_system != 'Windows'" }
 pylint = "^3.3.1"
 pydantic = "^2.9.2"
 numpy = "^2.1.3"

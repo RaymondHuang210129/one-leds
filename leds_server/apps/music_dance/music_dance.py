@@ -6,15 +6,21 @@ import time
 from typing import List, Dict, Tuple
 import sounddevice as sd
 import numpy as np
+import platform
 
 
 def get_loopback_device_index() -> Tuple[int, float]:
     devices: sd.DeviceList = sd.query_devices()
-    for device in devices:
-        if device['name'] == "BlackHole 2ch":
-            return (device['index'], device['default_samplerate'])
-    raise ValueError("Blackhole loopback device not found")
-
+    if platform.system() == "Darwin":
+        for device in devices:
+            if device['name'] == "BlackHole 2ch":
+                return (device['index'], device['default_samplerate'])
+        raise ValueError("Blackhole loopback device not found")
+    elif platform.system() == "Windows":
+        for device in devices:
+            if device['name'] == "Stereo Mix (Realtek(R) Audio)":
+                return (device['index'], device['default_samplerate'])
+        raise NotImplementedError
 
 colors = [
     (1, 0, 0),
