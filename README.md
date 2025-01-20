@@ -89,6 +89,7 @@ Users can connect LED strips either directly to a microcomputer or via an MCU.
   - The payload is structured such that each LED's color is represented by 3 bytes (RGB).  
   - For a strip with `N` LEDs, the payload length must be `3 * N` bytes.  
   - The MCU decodes the payload and updates the LED strip colors.  
+  - Minimal example: [link](mcu/)
 
 - **Multiple LED Strips per MCU**:  
   - An MCU can control multiple LED strips by assigning a unique UDP port to each strip.  
