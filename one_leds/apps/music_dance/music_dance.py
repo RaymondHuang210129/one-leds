@@ -1,7 +1,7 @@
-from leds_server.common.control_instance import ControlInstance
-from leds_server.common.app import App
-from leds_server.common.color import Color
-from leds_server.common.config import AppConfig, MusicDanceConfig
+from one_leds.common.control_instance import ControlInstance
+from one_leds.common.app import App
+from one_leds.common.color import Color
+from one_leds.common.config import AppConfig, MusicDanceConfig
 import time
 from typing import List, Dict, Tuple
 import sounddevice as sd

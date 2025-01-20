@@ -1,7 +1,7 @@
-from leds_server.common.control_instance import ControlInstance
-from leds_server.common.app import App
-from leds_server.common.color import Color
-from leds_server.common.config import AppConfig, ColorServerConfig
+from one_leds.common.control_instance import ControlInstance
+from one_leds.common.app import App
+from one_leds.common.color import Color
+from one_leds.common.config import AppConfig, ColorServerConfig
 from typing import List
 from .util import UDPPacketReceiver, udp_payload_to_colors
 

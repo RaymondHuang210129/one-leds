@@ -1,11 +1,11 @@
 import argparse
-from leds_server.common.config import *
-from leds_server.common.control_instance import ControlInstance
-from leds_server.apps.example_app.example_app import ExampleApp
-from leds_server.apps.color_server.color_server import ColorServer
-from leds_server.apps.music_dance.music_dance import MusicDance
-from leds_server.control_instances.control_instance_direct import ControlInstanceDirect
-from leds_server.control_instances.control_instance_remote import ControlInstanceRemote
+from one_leds.common.config import *
+from one_leds.common.control_instance import ControlInstance
+from one_leds.apps.example_app.example_app import ExampleApp
+from one_leds.apps.color_server.color_server import ColorServer
+from one_leds.apps.music_dance.music_dance import MusicDance
+from one_leds.control_instances.control_instance_direct import ControlInstanceDirect
+from one_leds.control_instances.control_instance_remote import ControlInstanceRemote
 from typing import List, Union
 import json
 import os

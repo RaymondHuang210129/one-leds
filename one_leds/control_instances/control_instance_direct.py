@@ -1,5 +1,5 @@
-from leds_server.common.control_instance import ControlInstance
-from leds_server.common.config import ControlInstanceConfig
+from one_leds.common.control_instance import ControlInstance
+from one_leds.common.config import ControlInstanceConfig
 
 # Conditional import
 import platform

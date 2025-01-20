@@ -18,7 +18,7 @@
     ],
     "app_configs": {
         "example_app": {
-            "sleep_ms": 40,
+            "sleep_ms": 30,
             "fixed_color": false,
             "color_wipe": false,
             "theater_chase": false,

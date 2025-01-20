@@ -1,7 +1,7 @@
-from leds_server.common.control_instance import ControlInstance
-from leds_server.common.app import App
-from leds_server.common.color import Color
-from leds_server.common.config import AppConfig, ExampleAppConfig
+from one_leds.common.control_instance import ControlInstance
+from one_leds.common.app import App
+from one_leds.common.color import Color
+from one_leds.common.config import AppConfig, ExampleAppConfig
 import time
 from typing import List
 
@@ -17,7 +17,7 @@ class ExampleApp(App):
     def begin(self) -> None:
         while True:
             if self._config.fixed_color:
-                self._fix_color(Color(255, 0, 128))
+                self._fix_color(Color(255, 255, 255))
             if self._config.color_wipe:
                 self._color_wipe(Color(255, 0, 0))
                 self._color_wipe(Color(0, 255, 0))

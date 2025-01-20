@@ -1,4 +1,4 @@
-# LEDs Server  
+# OneLeds
 
 A cross-platform application for controlling LED light strips with versatile configurations and features.  
 
@@ -138,12 +138,12 @@ For each application specifically:
 Basic usage:
 ```sh
 poetry shell
-python -m leds_server --config config.json --app ExampleApp
+python -m one_leds --config config.json --app ExampleApp
 ```
 
 If `--config` not specified, it runs with default configuration specified in `config/default.json`.
 
-All apps defined in `leds_server/apps` should be imported in `__main__.py` for users to specify the app to execute. This is done by reflection.
+All apps defined in `one_leds/apps` should be imported in `__main__.py` for users to specify the app to execute. This is done by reflection.
 
 ### ExampleApp
 

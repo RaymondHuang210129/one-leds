@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "leds-server"
+name = "one-leds"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]

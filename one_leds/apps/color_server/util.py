@@ -1,4 +1,4 @@
-from leds_server.common.color import Color
+from one_leds.common.color import Color
 from typing import List
 import struct
 import re
@@ -16,7 +16,7 @@ def udp_payload_to_colors(payload: bytes) -> List[Color]:
 
 class UDPPacketReceiver:
     def __init__(self, ip: str, port: int):
-        if not re.search("^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$", ip):
+        if not re.search("^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9]).){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$", ip):
             raise ValueError("Misformatted IPv4 address")
         if port < 1024 or port > 65535:
             raise ValueError("Unacceptable port number")
